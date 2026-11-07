@@ -96,6 +96,9 @@ jobs:
             cargo +nightly build -Z build-std=std,panic_abort --target "$TRIPLE" --release --manifest-path ./Cargo.toml --config ../../.github/riscv64-cargo.toml
           else
             cd userspace/ksud/
+            # Android 16 KB page-size devices require 16 KB-aligned LOAD segments; the
+            # manager packages this binary as libksud.so, so a 4 KB alignment fails there.
+            export RUSTFLAGS="-C link-arg=-Wl,-z,max-page-size=16384 -C link-arg=-Wl,-z,common-page-size=16384"
             cargo ndk b -P 26 -t ${{ inputs.target }} -r -Z build-std-features="optimize_for_size" -Z trim-paths
           fi
 
