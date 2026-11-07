@@ -5,9 +5,11 @@
 #define EXPECTED_SIZE_OFFICIAL 0x033b
 #define EXPECTED_HASH_OFFICIAL "c371061b19d8c7d7d6133c6a9bafe198fa944e50c1b31c9d8daa8d7f1fc2d2d6"
 
-// Baka-SU/BakaSU
-#define EXPECTED_SIZE_BAKASU 0x377
-#define EXPECTED_HASH_BAKASU "d3469712b6214462764a1d8d3e5cbe1d6819a0b629791b9f4101867821f1df64"
+// Baka-SU/BakaSU -> this fork: manager APKs are built here and signed with the
+// project keystore. Pinning upstream's BakaSU cert would leave every manager we
+// build untrusted ("Not installed"), so this row carries the fork certificate.
+#define EXPECTED_SIZE_BAKASU 0x320
+#define EXPECTED_HASH_BAKASU "bfdd092457348ee7cb7f6e228b8fe518e95d445b0736d796d578a5e3b478940d"
 
 // KOWX712/KernelSU
 #define EXPECTED_SIZE_KOWX712 0x375
